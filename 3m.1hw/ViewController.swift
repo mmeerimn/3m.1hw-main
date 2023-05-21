@@ -29,16 +29,24 @@ class ViewController: UIViewController {
     }
     
     @IBAction func SignInButton(_ sender: Any) {
-        if EmailTF.text == "" {
-            
+        if  EmailTF.text == "" && PasswordTF.text == "" {
             EmailTF.placeholder = " Заполните, пожалуйста"
             self.EmailTF.layer.borderWidth = 2
             self.EmailTF.layer.borderColor = UIColor.red.cgColor
-        }
-        if PasswordTF.text == "" {
             PasswordTF.placeholder = " Заполните, пожалуйста"
             self.PasswordTF.layer.borderWidth = 2
             self.PasswordTF.layer.borderColor = UIColor.red.cgColor
+       
+        } else if EmailTF.text == "" {
+            EmailTF.placeholder = " Заполните, пожалуйста"
+            self.EmailTF.layer.borderWidth = 2
+            self.EmailTF.layer.borderColor = UIColor.red.cgColor
+       
+        } else if PasswordTF.text == "" {
+            PasswordTF.placeholder = " Заполните, пожалуйста"
+            self.PasswordTF.layer.borderWidth = 2
+            self.PasswordTF.layer.borderColor = UIColor.red.cgColor
+       
         } else {
             openMain()
         }
@@ -56,9 +64,8 @@ class ViewController: UIViewController {
     }
 
     func openMain(){
-        let mainVc = storyboard?.instantiateViewController(withIdentifier: "main_vc")
-        mainVc?.modalPresentationStyle = .fullScreen
-        self.present(mainVc!, animated: true, completion: nil)
+        let mainVC = storyboard?.instantiateViewController(withIdentifier: "main_vc")
+        navigationController?.pushViewController(mainVC!, animated: true)
     }
     
     @objc func forgotPassword(){
@@ -66,7 +73,8 @@ class ViewController: UIViewController {
     }
     
     @objc func signUp(){
-        print("sign up")
+        let signUpVC = storyboard?.instantiateViewController(withIdentifier: "signUp_vc")
+        navigationController?.pushViewController(signUpVC!, animated: true)
     }
 
 }
